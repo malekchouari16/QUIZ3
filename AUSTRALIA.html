@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>African Countries Quiz</title>
+  <link rel="stylesheet" href="australia.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lilita+One&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+        <div class="app">
+          <center><h1>TEST YOUR KNOWLEDGE !</h1></center>
+          <center><h2 id="question">Are you smart enough to get a full score ?</h2></center>
+          <div class="quiz">
+              <div id="answer-buttons">
+                  <button class="btn">Answer 1</button>
+                  <button class="btn">Answer 2</button>
+                  <button class="btn">Answer 3</button>
+                  <button class="btn">Answer 4</button>
+                  <button class="btn" onclick="nextQuestion()">Next</button>
+                 
+              </div>
+          </div>
+        </div>
+</body>
+<script>
+    let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+    });
+}
+
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+
+showSlide(currentSlide);
+
+
+const questions = [
+    {
+        question: 'What is the capital city of Australia?',
+        answers: [ 'Sydney', 'Melboune', ' Canberra', 'Brisbane'],
+        correctAnswer: 2,
+    },
+    {
+        question: 'What is the largest city in Australia by population?',
+        answers: ['Sydney', 'Melboune', '  Bribane', ' Perth'],
+        correctAnswer: 0,
+    },
+    {
+        question: 'What is the name of the iconic rock formation located in the Northern Territory of Australia?',
+        answers: ['Uluru (Ayers Rock)', 'Kata Tjuta (The Olgas)', ' Wave Rock', 'Mount Augustus'],
+        correctAnswer: 0,
+    },
+    {
+        question: 'Which Australian state is known for its wine production in regions such as Barossa Valley and McLaren Vale?',
+        answers: ['New South Wales', 'Victoria', 'South Australia', 'Western Australia'],
+        correctAnswer: 2,
+    },
+    {
+        question: 'What is the name of the largest coral reef system in the world, located off the coast of Queensland, Australia?',
+        answers: ['Great Barrier Reef', 'Ningaloo Reef', 'Coral Sea Reef', ' Tasman Reef'],
+        correctAnswer: 0,
+    },
+    {
+        question: 'Which Australian state or territory is home to the city of Hobart?',
+        answers: [' Victoria', ' Queensland', ' South Australia', ' Tasmania',],
+        correctAnswer: 3,
+    },
+    {
+        question: 'Which Australian animal is featured on the countrys coat of arms alongside the emu?',
+        answers: ['Kangaroo', 'Koala', 'Wombat', ' Tasmanian Devil',],
+        correctAnswer: 0,
+    },
+    {
+        question: 'What is the name of the highest mountain in Australia?',
+        answers: [' Mount Bartle Frere', '  Mount Bogong', ' Mount Ossa', ' Mount Kosciuszko',],
+        correctAnswer: 3,
+    },
+    {
+        question: 'What is the currency of Australia?',
+        answers: ['Pound', 'Euro', 'Dollar', ' Yen',],
+        correctAnswer: 2,
+    },
+    {
+        question: 'What is the name of the desert that covers much of central Australia?',
+        answers: ['  Sahara Desert', 'Gobi Desert', 'Simpson Desert', ' Atacama Desert',],
+        correctAnswer: 2,
+    },
+
+]
+const displayedQuestions = []; // Create a new array to keep track of displayed questions
+let score = 0; // Initialize the score variable
+
+
+function getRandomQuestion() {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    if (displayedQuestions.includes(randomIndex)) {
+        // If the random index is already in the `displayedQuestions` array,
+        // recursively call the function until a new question is found
+        return getRandomQuestion();
+    }
+    displayedQuestions.push(randomIndex);
+    return questions[randomIndex];
+}
+
+
+function displayQuestion(question) {
+    document.getElementById('question').textContent = question.question;
+    const answerButtons = document.getElementById('answer-buttons');
+    answerButtons.innerHTML = '';
+    question.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.classList.add('btn');
+        button.textContent = answer;
+        button.addEventListener('click', () => {
+            if (index === question.correctAnswer) {
+                button.style.backgroundColor = 'green';
+                score++; // Increment score if the answer is correct
+            } else {
+                button.style.backgroundColor = 'red';
+            }
+
+
+            // Disable the answer buttons after a user selects an answer
+            question.answers.forEach((answer, index) => {
+                const btn = document.querySelector(`#answer-buttons button:nth-child(${index + 1})`);
+                btn.disabled = true;
+            });
+
+
+            // Show the "Next" button
+            const nextButton = document.createElement('button');
+            nextButton.classList.add('btn', 'next-btn');
+            nextButton.textContent = 'Next';
+            nextButton.addEventListener('click', () => {
+                // Remove the "Next" button
+                nextButton.remove();
+
+
+                // Enable the answer buttons
+                question.answers.forEach((answer, index) => {
+                    const btn = document.querySelector(`#answer-buttons button:nth-child(${index + 1})`);
+                    btn.disabled = false;
+                    // Reset the background color of the answer buttons
+                    btn.style.backgroundColor = '';
+                });
+
+
+                // Move to the next question
+                if (displayedQuestions.length === questions.length) {
+                    // Display a message to indicate that the quiz is over
+                    const congratsMessage = document.createElement('div');
+                    congratsMessage.classList.add('congrats-message');
+                    congratsMessage.textContent = `Not bad ! Keep practicing for a better score . Your score is ${score}/${questions.length}`;
+                    document.body.appendChild(congratsMessage);
+                } else {
+                    // Display the next question
+                    const newQuestion = getRandomQuestion();
+                    displayQuestion(newQuestion);
+                }
+            });
+
+
+            answerButtons.appendChild(nextButton);
+        });
+
+
+        answerButtons.appendChild(button);
+    });
+}
+
+
+function startQuiz() {
+    displayedQuestions.length = 0; // Reset the `displayedQuestions` array
+    score = 0; // Reset the score
+    const question = getRandomQuestion();
+    displayQuestion(question);
+}
+
+
+startQuiz();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section');
+
+
+    sections.forEach(section => {
+        const title = section.querySelector('h2');
+
+
+        title.addEventListener('click', function() {
+            section.classList.toggle('expanded');
+        });
+    });
+});
+
+</script>
+</html>

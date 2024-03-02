@@ -1,0 +1,43 @@
+
+        /* CSS styles go here */
+        body {
+            font-family:'Arial', serif;
+            margin: 0;
+            padding: 0;
+            background-color :#e2e9ed;
+            text-align: center;
+            font-family:'Comic sans',sans-serif;
+            position: center;
+            color: #8B5634;
+        }
+        img {
+            width: 320px;
+            height: 380px;
+        }
+
+        div {
+            display : flex;
+            justify-content: center;
+            align-items : center;
+            height: 70vh;
+        }
+
+        button {
+            font-size : 25px;
+            color : rgb(0, 0, 0) ;
+            padding :20px;
+            border-radius: 25px;
+            border-style:double;
+            margin : 10px;
+            background-color :#67AC85;
+            font-family :'Courier New', Courier, monospace ; 
+            cursor:default;
+            animation:3s none;
+            
+        }
+    
+        .active, button:hover {
+            background-color :#5184B3;
+            letter-spacing: 1px;
+
+        }

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>African Countries Quiz</title>
+  <link rel="stylesheet" href="antartica.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lilita+One&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+        <div class="app">
+          <center><h1>TEST YOUR KNOWLEDGE !</h1></center>
+          <center><h2 id="question">Are you smart enough to get a full score ?</h2></center>
+          <div class="quiz">
+              <div id="answer-buttons">
+                  <button class="btn">Answer 1</button>
+                  <button class="btn">Answer 2</button>
+                  <button class="btn">Answer 3</button>
+                  <button class="btn">Answer 4</button>
+                  <button class="btn" onclick="nextQuestion()">Next</button>
+                 
+              </div>
+          </div>
+        </div>
+</body>
+<script>
+    let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+    });
+}
+
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+
+showSlide(currentSlide);
+
+
+const questions = [
+    {
+        question: 'What is the largest ice shelf in Antarctica?',
+        answers: [' Amery Ice Shelf', 'Ross Ice Shelf', ' Filchner-Ronne Ice Shelf', ' Larsen Ice Shelf',],
+        correctAnswer: 2,
+    },
+    {
+        question: 'What is the average thickness of the Antarctic ice sheet?',
+        answers: [ '500 meters', '1,000 meters', ' 2,500 meters', '4,000 meters'],
+        correctAnswer: 2
+    },
+    {
+        question: 'What is the coldest temperature ever recorded on Earth, measured in Antarctica?',
+        answers: ['-50°C', '-80°C', '  -100°C', ' 128.6°C'],
+        correctAnswer: 3,
+    },
+    {
+        question: 'Which of the following animals is not found in Antarctica?',
+        answers: ['Penguins', 'Polar bears', ' Seals', 'Whales'],
+        correctAnswer: 1,
+    },
+    {
+        question: 'What is the name of the research station operated by the United States in Antarctica?',
+        answers: ['McMurdo Station', 'Amundsen-Scott South Pole Station', 'Halley Research Station', 'Rothera Research Station'],
+        correctAnswer: 0,
+
+    },
+    {
+        question: 'What is the southernmost point on the Earths surface, located in Antarctica?',
+        answers: ['South Pole', 'Mount Erebus', ' Cape Adare', ' South Sandwich Islands'],
+        correctAnswer: 0,
+    },
+    {
+        question: 'Which treaty governs international relations and scientific research in Antarctica?',
+        answers: ['  Antarctic Treaty System', ' Antarctic Environmental Protocol', ' Kyoto Protocol', ' Paris Agreement',],
+        correctAnswer: 0,
+    },
+    {
+        question: 'What is the largest glacier in Antarctica?',
+        answers: ['Pine Island Glacier', 'Thwaites Glacier', 'Ross Ice Shelf', ' Lambert Glacier',],
+        correctAnswer: 3,
+    },
+    {
+        question: 'What is the name of the ice-covered, active volcano in Antarctica?',
+        answers: [' Mount Kilimanjaro', ' Mount Fuji', ' Mount Erebus', 'Mount Vesuvius',],
+        correctAnswer: 2,
+    },
+    {
+        question: 'How many countries have territorial claims in Antarctica??',
+        answers: ['5', '7', '12', ' 20',],
+        correctAnswer: 1,
+    },
+    {
+        question: 'How many countries have territorial claims in Antarctica??',
+        answers: ['5', '7', '12', ' 20',],
+        correctAnswer: 1,
+    },
+
+    
+
+
+]
+const displayedQuestions = []; // Create a new array to keep track of displayed questions
+let score = 0; // Initialize the score variable
+
+
+function getRandomQuestion() {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    if (displayedQuestions.includes(randomIndex)) {
+        // If the random index is already in the `displayedQuestions` array,
+        // recursively call the function until a new question is found
+        return getRandomQuestion();
+    }
+    displayedQuestions.push(randomIndex);
+    return questions[randomIndex];
+}
+
+
+function displayQuestion(question) {
+    document.getElementById('question').textContent = question.question;
+    const answerButtons = document.getElementById('answer-buttons');
+    answerButtons.innerHTML = '';
+    question.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.classList.add('btn');
+        button.textContent = answer;
+        button.addEventListener('click', () => {
+            if (index === question.correctAnswer) {
+                button.style.backgroundColor = 'green';
+                score++; // Increment score if the answer is correct
+            } else {
+                button.style.backgroundColor = 'red';
+            }
+
+
+            // Disable the answer buttons after a user selects an answer
+            question.answers.forEach((answer, index) => {
+                const btn = document.querySelector(`#answer-buttons button:nth-child(${index + 1})`);
+                btn.disabled = true;
+            });
+
+
+            // Show the "Next" button
+            const nextButton = document.createElement('button');
+            nextButton.classList.add('btn', 'next-btn');
+            nextButton.textContent = 'Next';
+            nextButton.addEventListener('click', () => {
+                // Remove the "Next" button
+                nextButton.remove();
+
+
+                // Enable the answer buttons
+                question.answers.forEach((answer, index) => {
+                    const btn = document.querySelector(`#answer-buttons button:nth-child(${index + 1})`);
+                    btn.disabled = false;
+                    // Reset the background color of the answer buttons
+                    btn.style.backgroundColor = '';
+                });
+
+
+                // Move to the next question
+                if (displayedQuestions.length === questions.length) {
+                    // Display a message to indicate that the quiz is over
+                    const congratsMessage = document.createElement('div');
+                    congratsMessage.classList.add('congrats-message');
+                    congratsMessage.textContent = `Yayyyy you finished! Keep practicing to grow your knowledge . Your score is ${score}/${questions.length}`;
+                    document.body.appendChild(congratsMessage);
+                } else {
+                    // Display the next question
+                    const newQuestion = getRandomQuestion();
+                    displayQuestion(newQuestion);
+                }
+            });
+
+
+            answerButtons.appendChild(nextButton);
+        });
+
+
+        answerButtons.appendChild(button);
+    });
+}
+
+
+function startQuiz() {
+    displayedQuestions.length = 0; // Reset the `displayedQuestions` array
+    score = 0; // Reset the score
+    const question = getRandomQuestion();
+    displayQuestion(question);
+}
+
+
+startQuiz();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section');
+
+
+    sections.forEach(section => {
+        const title = section.querySelector('h2');
+
+
+        title.addEventListener('click', function() {
+            section.classList.toggle('expanded');
+        });
+    });
+});
+
+</script>
+</html>

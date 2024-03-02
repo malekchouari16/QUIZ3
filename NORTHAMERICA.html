@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>African Countries Quiz</title>
+  <link rel="stylesheet" href="north.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lilita+One&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+        <div class="app">
+          <center><h1>TEST YOUR KNOWLEDGE !</h1></center>
+          <center><h2 id="question">Are you smart enough to get a full score ?</h2></center>
+          <div class="quiz">
+              <div id="answer-buttons">
+                  <button class="btn">Answer 1</button>
+                  <button class="btn">Answer 2</button>
+                  <button class="btn">Answer 3</button>
+                  <button class="btn">Answer 4</button>
+                  <button class="btn" onclick="nextQuestion()">Next</button>
+                 
+              </div>
+          </div>
+        </div>
+</body>
+<script>
+    let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+    });
+}
+
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+
+showSlide(currentSlide);
+
+
+const questions = [
+    {
+        question: 'Which country is the largest by land area in North America?',
+        answers: [ 'United States', 'Canada', ' Mexico', 'Denmark'],
+        correctAnswer: 1,
+    },
+    {
+        question: 'Which river forms part of the border between the United States and Mexico?',
+        answers: ['Mississippi River', 'Rio Grande', 'Colorado River', 'Columbia River'],
+        correctAnswer: 1,
+    },
+    {
+        question: 'What is the largest lake by surface area in North America?',
+        answers: ['Lake Superior', 'Lake Michigan', 'Great Salt Lake', 'Lake Ontario'],
+        correctAnswer: 0,
+    },
+    {
+        question: 'Which island in the Caribbean is a territory of the United States?',
+        answers: ['Jamaica', 'Cuba', 'Puerto Rico', 'Haiti'],
+        correctAnswer: 2,
+    },
+    {
+        question: 'Which U.S. state is known as the "Sunshine State"?',
+        answers: ['California', 'Florida', 'Texas', 'Hawai'],
+        correctAnswer: 1,
+    },
+    {
+        question: 'What is the smallest independent country in North America by land area?',
+        answers: ['  Saint Vincent and the Grenadines', 'Grenada', 'Antigua and Barbuda', ' Saint Kitts and Nevis',],
+        correctAnswer: 3,
+    },
+    {
+        question: 'Which North American city hosted the 1976 Summer Olympics?',
+        answers: ['Los Angeles', 'Montreal', 'Atlanta', ' Mexico City',],
+        correctAnswer: 2,
+    },
+    {
+        question: 'Which island in North America is divided between two countries?',
+        answers: ['Hispaniola', ' Puerto Rico', ' Vancouver Island', ' Long Island',],
+        correctAnswer: 0,
+    },
+    {
+        question: 'Which Native American tribe is known for its distinctive totem poles?',
+        answers: ['Navajo', 'Cherokee', 'Inuit', ' Tlingit',],
+        correctAnswer: 3,
+    },
+    {
+        question: 'Which U.S. state is known as the "Land of 10,000 Lakes"?',
+        answers: ['Minnesota', 'Wisconsin', 'Michigan', ' Vermont',],
+        correctAnswer: 0,
+    },
+
+]
+const displayedQuestions = []; // Create a new array to keep track of displayed questions
+let score = 0; // Initialize the score variable
+
+
+function getRandomQuestion() {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    if (displayedQuestions.includes(randomIndex)) {
+        // If the random index is already in the `displayedQuestions` array,
+        // recursively call the function until a new question is found
+        return getRandomQuestion();
+    }
+    displayedQuestions.push(randomIndex);
+    return questions[randomIndex];
+}
+
+
+function displayQuestion(question) {
+    document.getElementById('question').textContent = question.question;
+    const answerButtons = document.getElementById('answer-buttons');
+    answerButtons.innerHTML = '';
+    question.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.classList.add('btn');
+        button.textContent = answer;
+        button.addEventListener('click', () => {
+            if (index === question.correctAnswer) {
+                button.style.backgroundColor = 'green';
+                score++; // Increment score if the answer is correct
+            } else {
+                button.style.backgroundColor = 'red';
+            }
+
+
+            // Disable the answer buttons after a user selects an answer
+            question.answers.forEach((answer, index) => {
+                const btn = document.querySelector(`#answer-buttons button:nth-child(${index + 1})`);
+                btn.disabled = true;
+            });
+
+
+            // Show the "Next" button
+            const nextButton = document.createElement('button');
+            nextButton.classList.add('btn', 'next-btn');
+            nextButton.textContent = 'Next';
+            nextButton.addEventListener('click', () => {
+                // Remove the "Next" button
+                nextButton.remove();
+
+
+                // Enable the answer buttons
+                question.answers.forEach((answer, index) => {
+                    const btn = document.querySelector(`#answer-buttons button:nth-child(${index + 1})`);
+                    btn.disabled = false;
+                    // Reset the background color of the answer buttons
+                    btn.style.backgroundColor = '';
+                });
+
+
+                // Move to the next question
+                if (displayedQuestions.length === questions.length) {
+                    // Display a message to indicate that the quiz is over
+                    const congratsMessage = document.createElement('div');
+                    congratsMessage.classList.add('congrats-message');
+                    congratsMessage.textContent = `Don't worry, You'll do better next time ! . Your score is ${score}/${questions.length}`;
+                    document.body.appendChild(congratsMessage);
+                } else {
+                    // Display the next question
+                    const newQuestion = getRandomQuestion();
+                    displayQuestion(newQuestion);
+                }
+            });
+
+
+            answerButtons.appendChild(nextButton);
+        });
+
+
+        answerButtons.appendChild(button);
+    });
+}
+
+
+function startQuiz() {
+    displayedQuestions.length = 0; // Reset the `displayedQuestions` array
+    score = 0; // Reset the score
+    const question = getRandomQuestion();
+    displayQuestion(question);
+}
+
+
+startQuiz();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section');
+
+
+    sections.forEach(section => {
+        const title = section.querySelector('h2');
+
+
+        title.addEventListener('click', function() {
+            section.classList.toggle('expanded');
+        });
+    });
+});
+
+</script>
+</html>

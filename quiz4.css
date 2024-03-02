@@ -1,0 +1,195 @@
+
+        /* CSS styles go here */
+        body {
+            font-family:'Arial', serif;
+            margin: 0;
+            padding: 0;
+            background-color :#e2e9ed;
+            text-align: center;
+            position: center;
+            color: white;
+        
+        }
+       
+        header {
+            background-color: #5184B3;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin: 30px;
+            border-radius: 25px;
+        
+           
+           }
+     h1{
+        font-family: "Protest Strike", sans-serif;
+        font-weight: 400;
+        font-size: 80px;
+        font-style: normal;
+    }
+    button{
+        width: 20%; 
+        height: 20%; 
+        display: center;
+        flex-direction: row;
+        justify-content:space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+
+    }
+    
+    .button1 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal; 
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button1:hover {
+        background-color : #76996a;
+        letter-spacing: 1px;
+        border-style:dashed;
+    }
+
+    .button2 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal; 
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button2:hover {
+        background-color :#4667ae;
+        letter-spacing: 1px;
+        border-style:dashed;
+
+    }
+    .button3 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal; 
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button3:hover {
+        background-color :#6d518f;
+        letter-spacing: 1px;
+        border-style:dashed;
+
+    }
+    .button4 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal; 
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button4:hover {
+        background-color :#871616;
+        letter-spacing: 1px;
+        border-style:dashed;
+
+    }
+    .button5 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button5:hover {
+        background-color :#a52f94;
+        letter-spacing: 1px;
+        border-style:dashed;
+
+    }
+    .button6 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal; 
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button6:hover {
+        background-color :#cb7c52;
+        letter-spacing: 1px;
+        border-style:dashed;
+
+    }
+    .button7 {
+        font-size : 25px;
+        color : rgb(0, 0, 0) ;
+        padding :50px;
+        border-radius: 25px;
+        border-style:groove;
+        margin : 10px;
+        background-color :white;
+        font-family : "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal; 
+        cursor:default;
+        animation:3s none;
+        
+    }
+
+    .active, .button7:hover {
+        background-color :#08807a;
+        letter-spacing: 1px;
+        border-style:dashed;
+
+    }
+   

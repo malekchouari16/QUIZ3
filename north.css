@@ -1,0 +1,125 @@
+body{
+    background-color: #d68f8e;
+    color:#000000;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+  }
+  h1{
+        font-family: "Protest Strike", sans-serif;
+        font-weight: 400;
+        font-size: 80px;
+        font-style: normal;
+        padding: 10px;
+        margin-top: 10px;
+        background-color:#871616;
+        color: rgb(251, 251, 251);
+        border-radius: 10px;
+        border-width: 2px;
+        box-shadow: 0 0 10px 2px;
+        margin-bottom: 10px;
+
+  }
+  h2{
+    font-family: "Anta", sans-serif;
+  }
+  .app {
+    text-align:initial;
+  }
+ 
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+   
+  }
+
+img{
+    width: 400px;
+    height: auto;
+    float: center;
+    margin-left: 70px;
+    
+}
+  .quiz {
+    background-color: #871616;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 40px;
+  }
+  .answer-button{
+    border-radius: 20px;
+
+  }
+ 
+  .btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    width: 100%;
+  }
+ 
+  .btn:hover {
+    background-color: #d68f8e;
+    letter-spacing: 1px;
+    border: #000000;
+    border-style: double;
+    box-shadow: 0 0 8px 2px;;
+  }
+  .congrats-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .corner-image {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+
+
+

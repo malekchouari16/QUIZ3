@@ -4,15 +4,15 @@
             font-family:'Arial', serif;
             margin: 0;
             padding: 0;
-            background-color :#e2e9ed;
+            background-color :#white;
             text-align: center;
             font-family:'Comic sans',sans-serif;
             position: center;
             color: #8B5634;
         }
     img {
-            width: 500px;
-            height: 500px;
+            width: 400px;
+            height: 400px;
         }
 
         div {
